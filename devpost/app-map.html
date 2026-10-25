@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proof Before Done | Application Map</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:light;color:#152639;background:#f4f7fb}
+*{box-sizing:border-box} body{max-width:920px;margin:0 auto;padding:2rem 1rem 4rem;line-height:1.6}
+header{border-bottom:3px solid #186d88;padding-bottom:1.2rem}
+h1{margin:.2rem 0;font-size:clamp(1.7rem,4vw,2.65rem)}
+h2{margin-top:1.8rem;color:#14516a} h3{margin-bottom:.2rem}
+p{margin:.5rem 0 1rem} .eyebrow{letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:#14516a}
+article,section.panel{background:#fff;border:1px solid #d8e1e8;border-radius:12px;padding:1.1rem 1.35rem;margin:1rem 0}
+code{overflow-wrap:anywhere;background:#eaf2f7;border-radius:4px;padding:.08rem .3rem}
+ol{padding-left:1.4rem}li{padding:.25rem 0}
+.diagram{overflow-x:auto} svg{display:block;max-width:100%;height:auto;margin:auto}
+small,.muted{color:#526879}
+footer{margin-top:2rem;padding-top:1rem;border-top:1px solid #ccd7e0}
+a{color:#155b79} a:focus-visible{outline:3px solid #ef9a00;outline-offset:3px}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">X13 / Devpost Learn / Reference map</div>
+<h1>Proof Before Done</h1>
+<p>A local browser application that checks a narrowly defined claim against a chosen file, then records a separate human decision. <strong>CHECK PASSED is not human acceptance.</strong></p>
+<p class="muted">Source snapshot: <code>01aa063</code> (verified implementation checkpoint). This map describes that snapshot; later code changes may require updates. This is technical documentation, not a record of a learner completing a code tour.</p></header>
+<main>
+<section class="panel">
+<h2>Main pieces</h2>
+<p><code>index.html</code> and <code>styles.css</code> render the dashboard. <code>src/app.js</code> connects buttons and fields to the real checks and decisions. <code>src/checks.js</code> reads a selected local file, evaluates one criterion and attempts SHA-256. <code>src/state.js</code> invalidates outdated results. <code>src/review.js</code> requires a separate explicit decision. <code>src/receipts.js</code> produces JSON/Markdown records. <code>tools/serve.mjs</code> serves allowlisted assets on loopback.</p>
+<p>Evidence is processed in the browser session. No persistent database, external API, account, or upload is part of the application. Exports are local unsigned records.</p>
+</section>
+<section class="panel">
+<h2>One action, end to end</h2>
+<div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 150" role="img" aria-labelledby="diagramTitle diagramDescription">
+<title id="diagramTitle">Path of a local evidence check to a separate review receipt</title>
+<desc id="diagramDescription">The dashboard run button calls app.js, checks.js evaluates file evidence, review.js records a human decision, and receipts.js exports results. State.js invalidates previous results when inputs change.</desc>
+<g font-family="system-ui,sans-serif" font-size="14" text-anchor="middle">
+<rect x="5" y="27" width="170" height="73" rx="9" fill="#e4f3f9" stroke="#226483"/>
+<text x="90" y="53">RUN CHECK button</text><text x="90" y="75" font-weight="700">src/app.js</text>
+<rect x="217" y="27" width="171" height="73" rx="9" fill="#e4f3f9" stroke="#226483"/>
+<text x="303" y="53">Actual file check</text><text x="303" y="75" font-weight="700">src/checks.js</text>
+<rect x="430" y="27" width="170" height="73" rx="9" fill="#e4f3f9" stroke="#226483"/>
+<text x="515" y="53">Human decision</text><text x="515" y="75" font-weight="700">src/review.js</text>
+<rect x="641" y="27" width="164" height="73" rx="9" fill="#e4f3f9" stroke="#226483"/>
+<text x="723" y="53">JSON / Markdown</text><text x="723" y="75" font-weight="700">src/receipts.js</text>
+<g stroke="#226483" stroke-width="3" fill="none"><path d="M175 64h33m-7 -6 7 6-7 6"/><path d="M388 64h33m-7 -6 7 6-7 6"/><path d="M600 64h32m-7 -6 7 6-7 6"/></g>
+<text x="405" y="134" font-size="13">src/state.js invalidates the check and decision if inputs change.</text></g>
+</svg></div>
+<p class="muted">A passing check is limited to the chosen criterion. Human review remains independent. A generated receipt is not a cryptographic signature or proof of overall project completion.</p>
+</section>
+<section class="panel">
+<h2>Three-stop reference route</h2>
+<ol>
+<li><strong>Input and result UI:</strong> <code>src/app.js</code>, search for <code>$("run").onclick</code> and <code>invalidate()</code>. The click handler passes claim, file, check type and criterion into a new run; input changes clear stale outcomes.</li>
+<li><strong>Verified evidence:</strong> <code>src/checks.js</code>, find <code>export async function check</code>. This function enforces the 5 MiB limit, reads exact bytes, attempts SHA-256, and returns PASSED, FAILED or NOT VERIFIED for filename/text criteria.</li>
+<li><strong>Decision and export:</strong> <code>src/review.js</code>, find <code>recordReview</code>, then <code>src/receipts.js</code>, find <code>receipt</code>, <code>json</code> and <code>markdown</code>. Confirmation and reviewer ID are required; exports keep machine and human outcomes distinct.</li>
+</ol>
+<p><strong>Activity status:</strong> This is a reference route based on actual source, not a claim that the owner manually toured or edited these files.</p>
+</section>
+<section class="panel">
+<h2>To change this, start here</h2>
+<ul>
+<li>Dashboard labels, forms or help text: <code>index.html</code>; appearance and responsive layout: <code>styles.css</code>.</li>
+<li>Permitted evidence checks or limits: <code>src/checks.js</code> and regression coverage in <code>tests/core.test.mjs</code>. Changes to approved checks may require owner review.</li>
+<li>Reviewer confirmation and exception logic: <code>src/review.js</code>, paired with <code>src/app.js</code> and tests.</li>
+<li>Download fields and rendering: <code>src/receipts.js</code>; browser downloads are exercised in <code>tests/browser.mjs</code>.</li>
+</ul>
+</section>
+<section class="panel">
+<h2>A practice to reuse</h2>
+<p>The approved requirement “a passed check must not automatically accept a deliverable” is observable because <code>src/checks.js</code> produces an automated outcome, whereas <code>src/review.js</code> separately requires confirmed human review. <code>devpost/verification.md</code> records independent positive, negative, exception and invalidation tests, including 11 Node tests and 11 Edge browser checks.</p>
+<p>Reusable method: state the exact result to prove, map it to a specific action and evidence, test a failing case as well as a passing one, and keep human acceptance independent of automated results. This preserves the X13 reverse-loop method without inferring anything the learner personally practiced.</p>
+</section>
+<section class="panel">
+<h2>Open the application again</h2>
+<p>From the project root, double-click <code>start.cmd</code> on Windows, or run <code>node tools/serve.mjs</code> with Node.js 24 or newer. Open the localhost address printed by the launcher. The application runs without Codex, cloud accounts, credentials or installing its dev dependencies.</p>
+<p>Try the synthetic fixture <code>fixtures/deliverable.txt</code>. Text criterion <code>WRONG</code> fails; <code>Delivery ready</code> passes. A pass does not make a human decision. The selected file is limited to 5 MiB, supported text extensions are .txt/.md/.csv/.json, and PDF/image-content checks are not supported.</p>
+</section>
+</main><footer><small>X13 · Proof Before Done · Technical reference · No tracking, CDN or external dependencies</small></footer>
+</body></html>

@@ -20,26 +20,30 @@ Build mode: fast — explicitly approved by owner October 25, 2026. Less narrati
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — shared final-review session for this small single-slice build; feedback can shape revisions before release.
-- [ ] Final kick-the-tires exploration and feedback completed.
+- [ ] Early usable behavior explored — owner reports watching a live demonstration; owner-operated interactions are not established. Observation and sign-off are preserved in private evidence, but this box remains unchecked rather than claiming a learner-operated exercise.
+- [ ] Final kick-the-tires exploration and feedback completed — owner witnessed an app demonstration and approved the result; precise personally executed input sequence is not evidenced. See the signed-off product decision below. A formal learner-operated test remains unverified.
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship.
+- [x] Final review complete — owner expressly approved the demonstrated existing application on October 25 and requested no code changes or further editing. This is a product sign-off, not an assertion of learner-operated test steps, Devpost eligibility, or release permission. Direct chat statements are preserved verbatim in `private-evidence/owner-observed-final-review-20261025.md`; mechanical evidence in `verification.md`.
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — brief evidence-based recap connecting a real requirement, implementation and independent test; do not claim unperformed practice.
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate.
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse.
+- [x] Learning activity complete — focused evidence-based recap/reference delivered: an automated PASS in `src/checks.js` does not automatically approve a deliverable; `src/review.js` requires an independent decision; `src/receipts.js` records both. This records a documented recap, not a learner-operated interactive source tour.
+- [x] Optional edit and transfer reflection addressed — owner expressly declined editing; no personal source changes or answer to any survey are invented. No additional reflection exercise was imposed.
+- [x] `devpost/app-map.html` generated from finished code and independently checked, with real anchors and an offline technical reference route.
 
-Activity and evidence: Pending implementation and actual review.
-Route and stops: To be selected from real finished source.
-Edit outcome: Not offered yet.
-Reflection: Not recorded; no invented learner answer.
-Activity mode: Proposed focused recap and reference map, consistent with the owner's plan-first and continuous-execution preferences.
+Activity and evidence: Focused code-and-evidence recap documented October 25, sourced to the existing app and passing 11 unit + 11 browser checks. Map offline and anchors independently checked; tests rerun with exit code 0 on October 25.
+Route and stops: Reference route only, not a claimed learner-operated tour: `src/app.js` RUN CHECK and invalidate → `src/checks.js` check → `src/review.js` recordReview / `src/receipts.js` receipt.
+Edit outcome: Owner expressly declined. No edit performed.
+Reflection: No fictional learner survey/reflection answer; none demanded.
+Activity mode: Focused evidence-based recap and self-contained reference map.
 
 ## Revisions
+
+- 2026-10-25: Reconciled owner's witnessed demonstration and express final product approval separately from an unevidenced learner-operated test. Preserved actual words and scope in private evidence; no source change requested.
+- 2026-10-25: Added standalone offline `devpost/app-map.html` from actual sources (SHA-256 `2628c26514770ad4814ea91c650bd89751113fda8ab27f88117ea3e726bd9a6d`); verified code anchors, no network-backed resources or executable scripts, and independent tests (11 Node passed; Edge browser script exit 0).
+- Step 5 skill strict learner hands-on requirement remains a documented curriculum discrepancy: observing a working demonstration and approving it does not prove owner personally exercised the application. No automated actor's actions are attributed to the owner. Step 6 eligibility is not certified.
 
 
 - Implementation inspection retained private byte snapshots, deep-froze nested evidence records, and invalidated review on confirmation changes; regression and browser reruns passed. Mechanical evidence is in verification.md; learner review remains unchecked.

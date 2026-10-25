@@ -38,4 +38,4 @@ The browser tests use a clearly labeled synthetic reviewer. They do not constitu
 - `tools/serve.mjs`: loopback asset-only launcher.
 
 ## Status
-Implementation mechanically verified; owner hands-on feedback, final review, learning wrap-up/app map, publication and submission remain pending. No contest eligibility or submission success is claimed. Existing application source was not imported. Release licensing will be confirmed before publication.
+Implementation mechanically verified. On October 25, the owner reported watching the working demonstration, expressly approved the current product, and declined making source edits; those statements are preserved separately from automated evidence in ignored private records. A source-checked offline guide now exists at `devpost/app-map.html`. The strict official 5-build learner-operated hands-on check has not been independently established, and remains recorded as such rather than claiming the owner operated the UI. Publication, license selection, entrant-authored submission and Devpost acceptance remain outstanding; no contest eligibility or submission success is claimed. Existing application source was not imported.
