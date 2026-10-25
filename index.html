@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Proof Before Done — X13</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/src/app.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="brand">X13 <span>LOCAL EVIDENCE WORKSPACE</span></div>
+        <p class="eyebrow">ATTEMPT ≠ SUCCESS</p>
+        <h1>Proof Before Done<span>.</span></h1>
+        <p class="intro">
+          A claim is a starting point. Check the evidence. Record your judgment.
+        </p>
+        <div class="privacy">Local processing · No uploads · Session only</div>
+      </header>
+      <nav aria-label="Workflow">
+        CLAIM <b>→</b> EVIDENCE <b>→</b> AUTOMATED CHECK <b>→</b> HUMAN REVIEW
+        <b>→</b> RECORDED DECISION <b>→</b> RECEIPT
+      </nav>
+      <div class="grid">
+        <section class="card">
+          <h2><span>01</span> Define the check</h2>
+          <label for="claim">Original claim</label
+          ><textarea
+            id="claim"
+            rows="3"
+            placeholder="What exactly did the worker say was delivered?"
+          ></textarea
+          ><label for="file">Evidence file <small>Maximum 5 MiB</small></label
+          ><input id="file" type="file" /><label for="type"
+            >Verification method</label
+          ><select id="type">
+            <option value="filename">Exact filename</option>
+            <option value="text">UTF-8 text contains</option></select
+          ><label for="criterion">Exact criterion</label
+          ><input id="criterion" placeholder="Expected filename or text" />
+          <p class="hint">
+            Case-sensitive. Text checks: .txt, .md, .csv, .json. No PDF or
+            image-content checks.
+          </p>
+          <button id="run" class="primary">RUN CHECK <span>→</span></button>
+        </section>
+        <section class="card">
+          <h2><span>02</span> Inspect the evidence</h2>
+          <div id="result" class="status" aria-live="polite">
+            🟡 NOT VERIFIED
+          </div>
+          <p id="explanation">No check has been run.</p>
+          <dl id="metadata"></dl>
+          <p class="boundary">
+            CHECK PASSED ≠ HUMAN ACCEPTANCE<br />A file check never certifies
+            the entire project.
+          </p>
+          <button id="show-review" disabled>Record Human Review</button>
+        </section>
+      </div>
+      <section id="review-panel" class="card" hidden>
+        <h2><span>03</span> Make your own judgment</h2>
+        <p>
+          Review the claim, artifact, criteria, results and fingerprint above.
+          You are judging this deliverable only—not the whole project.
+        </p>
+        <label for="decision">Your decision</label
+        ><select id="decision">
+          <option value="">Choose explicitly…</option>
+          <option value="ACCEPT">
+            ACCEPT — satisfies the stated task and criteria
+          </option>
+          <option value="REJECT">
+            REJECT — does not satisfy the requirements
+          </option>
+          <option value="NEEDS MORE EVIDENCE">
+            NEEDS MORE EVIDENCE — proof is insufficient
+          </option></select
+        ><label for="reviewer">Reviewer identification</label
+        ><input id="reviewer" placeholder="Your name or reviewer identifier" />
+        <p class="hint">Self-reported identity; not authenticated.</p>
+        <label for="notes">Review notes</label
+        ><textarea id="notes" rows="3"></textarea
+        ><label class="check"
+          ><input id="confirm" type="checkbox" /> I personally reviewed this
+          specific deliverable and confirm this decision against the stated task
+          and criteria.</label
+        ><label class="check"
+          ><input id="exception" type="checkbox" /> If accepting incomplete or
+          failed evidence, I explicitly confirm the exception explained in my
+          notes.</label
+        ><button id="record">Confirm and record decision</button>
+      </section>
+      <section class="card receipts">
+        <h2><span>04</span> Keep the record</h2>
+        <p id="human" aria-live="polite">NO HUMAN DECISION RECORDED</p>
+        <div class="actions">
+          <button id="copy" disabled>Copy receipt</button
+          ><button id="json" disabled>Export JSON</button
+          ><button id="markdown" disabled>Export Markdown</button>
+        </div>
+        <p id="message" role="status"></p>
+        <p class="hint">
+          Receipts are unsigned, editable records with device-clock timestamps.
+          Save before closing; this session is not stored.
+        </p>
+      </section>
+      <footer>
+        X13 / PROOF BEFORE DONE
+        <span>Evidence first. Judgment stays human.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+﻿/devpost/learner-profile.md
+.env
+.env.*
+!.env.example
+
+/devpost/private-evidence/
+
+/node_modules/
+/work/
+/devpost/SKILL_EXECUTION_EVIDENCE_20261025.md
+/devpost/2-scope-execution.md
